@@ -1,20 +1,31 @@
-default:
-	@cat makefile
+.PHONY: default env update clean ygainers.csv wjsgainers.csv
+
+VENV := env
+PYTHON := $(VENV)/bin/python
+
+default: update
 
 env:
-	python3 -m venv env; . env/bin/activate; pip install --upgrade pip
+	@test -d $(VENV) || python3 -m venv $(VENV)
+	@$(VENV)/bin/pip install --upgrade pip
 
 update: env
-	. env/bin/activate; pip install -r requirements.txt
+	@. $(VENV)/bin/activate; pip install -r requirements.txt
 
 ygainers.html:
-	sudo google-chrome-stable --headless --disable-gpu --dump-dom --no-sandbox --timeout=5000 'https://finance.yahoo.com/markets/stocks/gainers/?start=0&count=200' > ygainers.html
+	@sudo google-chrome-stable --headless --disable-gpu --dump-dom --no-sandbox --timeout=5000 'https://finance.yahoo.com/markets/stocks/gainers/?start=0&count=200' > ygainers.html
 
 ygainers.csv: ygainers.html
-	python -c "import pandas as pd; raw = pd.read_html('ygainers.html'); raw[0].to_csv('ygainers.csv')"
+	@$(PYTHON) -c "import pandas as pd; raw = pd.read_html('ygainers.html'); raw[0].to_csv('ygainers.csv')"
 
 wjsgainers.html:
-	sudo google-chrome-stable --headless --disable-gpu --dump-dom --no-sandbox --timeout=500 https://www.wsj.com/market-data/stocks/us/movers > wjsgainers.html
+	@sudo google-chrome-stable --headless --disable-gpu --dump-dom --no-sandbox --timeout=500 https://www.wsj.com/market-data/stocks/us/movers > wjsgainers.html
 
 wjsgainers.csv: wjsgainers.html
-	python -c "import pandas as pd; raw = pd.read_html('wjsgainers.html'); raw[0].to_csv('wjsgainers.csv')"
+	@$(PYTHON) -c "import pandas as pd; raw = pd.read_html('wjsgainers.html'); raw[0].to_csv('wjsgainers.csv')"
+
+clean:
+	@rm -rf $(VENV)
+	@find . -type f -name '*.pyc' -delete
+	@find . -type d -name '__pycache__' -delete
+
