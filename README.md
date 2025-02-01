@@ -88,3 +88,8 @@ The `Makefile` includes a target called `update` to set up and configure the vir
    Execute the following command to set up the virtual environment:
    ```bash
    make update
+
+2. **Run the `ygainers.csv` Target**:
+   Run a headless browser session and generate a CSV file from scraped data:
+   ```bash
+   make ygainers.csv
