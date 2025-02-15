@@ -1,7 +1,7 @@
 import os
 import sys
 import logging
-import pandas as pd 
+import pandas as pd
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -23,7 +23,11 @@ def normalize_csv(input_filepath):
     data = pd.read_csv(input_filepath)
     # Check for required columns
     required_columns = ['symbol', 'price', 'price_change', 'price_percent_change']
-    assert all(col in data.columns for col in required_columns), "Input CSV is missing one or more required columns."
+    # Checking all required columns are present in the CSV
+    columns_present = all(col in data.columns for col in required_columns)
+    assert columns_present, (
+    "Input CSV is missing one or more required columns."
+    )
     # Save the normalized CSV
     output_filepath = input_filepath.replace('.csv', '_norm.csv')
     data.to_csv(output_filepath, index=False)
