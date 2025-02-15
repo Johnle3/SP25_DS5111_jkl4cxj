@@ -1,3 +1,8 @@
+"""
+This module provides functionality to normalize CSV files containing stock market data. 
+It ensures that the CSV files have the necessary columns ('symbol', 'price', 'price_change', 
+'price_percent_change') and formats them for further analysis or display.
+"""
 import os
 import sys
 import logging
