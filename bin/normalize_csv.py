@@ -1,13 +1,22 @@
-import pandas as pd
-import sys
 import os
+import sys
 import logging
+import pandas as pd  
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def normalize_csv(input_filepath):
-    logging.info(f"Starting normalization of {input_filepath}")
+    """
+    Normalize the CSV file to ensure it has the required headers and save a new version.
+    
+    Args:
+    input_filepath (str): The file path to the input CSV file.
+
+    Raises:
+    AssertionError: If the file does not exist or is missing required columns.
+    """
+    logging.info("Starting normalization of %s", input_filepath)
     
     # Ensure the file exists
     assert os.path.isfile(input_filepath), f"File does not exist: {input_filepath}"
@@ -19,13 +28,10 @@ def normalize_csv(input_filepath):
     required_columns = ['symbol', 'price', 'price_change', 'price_percent_change']
     assert all(col in data.columns for col in required_columns), "Input CSV is missing one or more required columns."
 
-    # Additional normalization logic could go here if needed
-    # For example, converting data types, handling missing values, or specific formatting
-
     # Save the normalized CSV
     output_filepath = input_filepath.replace('.csv', '_norm.csv')
     data.to_csv(output_filepath, index=False)
-    logging.info(f"Normalized CSV saved to: {output_filepath}")
+    logging.info("Normalized CSV saved to: %s", output_filepath)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
