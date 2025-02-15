@@ -1,7 +1,5 @@
-# Makefile
-
 # Declare phony targets
-.PHONY: default env update ygainers.html ygainers.csv wjsgainers.html wjsgainers.csv
+.PHONY: default env update ygainers.html ygainers.csv wjsgainers.html wjsgainers.csv lint
 
 # Default action is to show the contents of the Makefile
 default:
@@ -31,7 +29,8 @@ wjsgainers.html:
 # Target to convert HTML to CSV for WSJ gainers
 wjsgainers.csv: wjsgainers.html
 	. env/bin/activate && python -c "import pandas as pd; raw = pd.read_html('wjsgainers.html'); raw[0].to_csv('wjsgainers.csv')"
+
 # Running Pylint
 lint:
-    @echo "Running Pylint..."
-    @. env/bin/activate; pylint bin/normalize_csv.py
+	@echo "Running Pylint..."
+	@. env/bin/activate; pylint bin/normalize_csv.py
