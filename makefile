@@ -31,3 +31,7 @@ wjsgainers.html:
 # Target to convert HTML to CSV for WSJ gainers
 wjsgainers.csv: wjsgainers.html
 	. env/bin/activate && python -c "import pandas as pd; raw = pd.read_html('wjsgainers.html'); raw[0].to_csv('wjsgainers.csv')"
+# Running Pylint
+lint:
+    @echo "Running Pylint..."
+    @. env/bin/activate; pylint bin/normalize_csv.py
