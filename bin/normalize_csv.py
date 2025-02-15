@@ -3,7 +3,6 @@ import sys
 import logging
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 def normalize_csv(input_filepath):
     """
     Normalize the CSV file to ensure it has the required headers and save a new version.
