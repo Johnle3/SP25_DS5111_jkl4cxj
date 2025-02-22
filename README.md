@@ -93,3 +93,13 @@ The `Makefile` includes a target called `update` to set up and configure the vir
    Run a headless browser session and generate a CSV file from scraped data:
    ```bash
    make ygainers.csv
+
+## **6. Testing and Linting **
+
+The `Makefile` includes a target called `update` to set up and configure the virtual environment. This target installs the required Python dependencies listed in `requirements.txt`.
+
+
+1. **Run the Test**:
+   Test your application to ensure everything works as expected:
+   ```bash
+   make test
