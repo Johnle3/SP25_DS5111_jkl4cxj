@@ -44,4 +44,10 @@ test: lint
 	@echo "Running tests..."
 	@. env/bin/activate; pytest -vv tests
 
-
+# Running gainers job
+gainers: update
+ifndef SRC
+	$(error SRC is not set. Please run 'make gainers SRC=yahoo' or 'make gainers SRC=wsj')
+endif
+	@echo "Processing gainers for source: $(SRC)"
+	@. env/bin/activate; python main.py $(SRC)
