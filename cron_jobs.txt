@@ -1,0 +1,11 @@
+# Cron jobs for data collection - LAB 07
+# Every weekday (Monday-Friday) at 9:31am, 12:30pm, and 4:01pm EST
+
+31 9 * * 1-5 cd /Users/johnle/SP25_DS5111_jkl4cxj && source env/bin/activate && make gainers SRC=yahoo >> cron_gainers.log 2>&1
+30 12 * * 1-5 cd /Users/johnle/SP25_DS5111_jkl4cxj && source env/bin/activate && make gainers SRC=yahoo >> cron_gainers.log 2>&1
+1 16 * * 1-5 cd /Users/johnle/SP25_DS5111_jkl4cxj && source env/bin/activate && make gainers SRC=yahoo >> cron_gainers.log 2>&1
+
+# WSJ gainers: Every weekday at 9:31am, 12:30pm, and 4:01pm
+31 9 * * 1-5 cd /Users/johnle/SP25_DS5111_jkl4cxj && rm -f wjsgainers.html wjsgainers.csv && source env/bin/activate && make gainers SRC=wsj >> cron_wsj.log 2>&1
+30 12 * * 1-5 cd /Users/johnle/SP25_DS5111_jkl4cxj && rm -f wjsgainers.html wjsgainers.csv && source env/bin/activate && make gainers SRC=wsj >> cron_wsj.log 2>&1
+1 16 * * 1-5 cd /Users/johnle/SP25_DS5111_jkl4cxj && rm -f wjsgainers.html wjsgainers.csv && source env/bin/activate && make gainers SRC=wsj >> cron_wsj.log 2>&1
