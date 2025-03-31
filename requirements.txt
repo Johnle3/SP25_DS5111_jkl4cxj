@@ -2,4 +2,6 @@ pandas
 lxml
 pylint
 pytest
+dbt-core
+dbt-snowflake
 
