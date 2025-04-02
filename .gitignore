@@ -1,0 +1,10 @@
+you need a .gitignore file so files in env/ and those __pycache__ directories don't creep in.
+
+Remove the existing ones first with
+git rm -rf env
+git rm -rf <path to __pycache__>
+
+then add these two lines to your gitignore
+
+env/
+**/*__pycache__
