@@ -8,6 +8,9 @@ class GainerYahoo(GainerBase):
     def download(self):
         logging.info("Downloading Yahoo gainers from %s", self.url)
         # Simulated download data (replace with actual downloading logic)
+
+        # for these download functions, let's use the os modules system function and use the
+        # the command line we use in the makefile.  That will make these operational
         return "symbol,price,price_change,price_percent_change\nAAPL,150,5,3.45%"
 
     def process(self):
