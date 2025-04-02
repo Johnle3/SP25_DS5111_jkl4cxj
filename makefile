@@ -37,7 +37,7 @@ wjsgainers.csv: wjsgainers.html
 # Running Pylint
 lint:
 	@echo "Running Pylint..."
-	@. env/bin/activate; pylint bin/normalize_csv.py
+	@. env/bin/activate; pylint bin/normalize_csv.py # how does this react when you open it up to include the bin/gainers directory and the tests/ directory?
 
 # Running tests
 test: lint
