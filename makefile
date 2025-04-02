@@ -51,3 +51,4 @@ ifndef SRC
 endif
 	@echo "Processing gainers for source: $(SRC)"
 	@. env/bin/activate; python main.py $(SRC)
+# I like this ifndef trick... nice!
