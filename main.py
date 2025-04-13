@@ -2,13 +2,16 @@
 """
 Main script to run the gainer processing pipeline.
 """
-
 import sys
 import logging
 from bin.gainers.gainers_factory import GainersFactory
 
-# Set up logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# Set up logging so that log messages go to stderr.
+logging.basicConfig(
+    stream=sys.stderr,
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 class ProcessGainers:
     def __init__(self, gainer):
@@ -17,8 +20,10 @@ class ProcessGainers:
     def run(self):
         # Download and process data
         data = self.gainer.process()
-        logging.info("Final processed data:\n%s", data)
-        # Here you might add logic to save the data to a file or further process it.
+        # Log a summary message without duplicating the CSV content in stdout.
+        logging.info("Processing completed. Saving CSV data to stdout.")
+        # Print the CSV data to stdout; this is what will be captured to a file.
+        print(data)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

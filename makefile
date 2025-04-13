@@ -50,4 +50,4 @@ ifndef SRC
 	$(error SRC is not set. Please run 'make gainers SRC=yahoo' or 'make gainers SRC=wsj')
 endif
 	@echo "Processing gainers for source: $(SRC)"
-	@. env/bin/activate; python main.py $(SRC)
+	@. env/bin/activate; python main.py $(SRC) > "$(SRC)_gainers_$(shell date +%Y%m%d_%H%M%S).csv"
